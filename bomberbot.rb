@@ -1,5 +1,5 @@
 require 'socket'
-require 'bot.rb'
+require './Bot'
 
 class BomberBot
     def initialize
@@ -30,10 +30,10 @@ class BomberBot
 
             if message[0] == "EMPEZO"
                 bot = Bot.new(message[2][0])
-                bot.updateMap(message[1])
+                bot.update_map(message[1])
             elsif message[0] == "TURNO"
                 puts "turno: " + message[1]
-                bot.updateMap message[2]
+                bot.update_map message[2]
                 msg = bot.move
                 @socket_cliente.puts(msg)
             elsif message[0] == "PERDIO"

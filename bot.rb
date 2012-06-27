@@ -2,15 +2,15 @@ class Bot
     @letter = " "
     @x = 0
     @y = 0
-    @map = [][]
+    @map = []
 
     def initialize(letter)
         @letter = letter
-    End Sub
+    end
 
     def update_map(mapa)
         rows = mapa.split('\n')
-        map = [][]
+        map = []
         rows.each_with_index do |row, index|
             map[index] = row.split(",")
         end
