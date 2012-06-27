@@ -13,6 +13,7 @@ class Bot
         map = []
         rows.each_with_index do |row, index|
             map[index] = row.split(",")
+
         end
         pos = mapa.index(@letter) / 2
         @y = pos / rows.length
@@ -20,7 +21,7 @@ class Bot
     end
 
     def move
-        mov = rand(0..7)
+        mov = Random.rand(8)
         puts "mov#{mov}"
         case mov
             when 0
