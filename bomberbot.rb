@@ -1,4 +1,5 @@
 require 'socket'
+require 'bot.rb'
 
 class BomberBot
     def initialize
@@ -11,8 +12,8 @@ class BomberBot
     end
 
     def conectar user, token
-        @socket_cliente = TCPSocket.open('localhost', 5000)
-        bienvenida = socket_cliente.read
+        @socket_cliente =TCPSocket::new('localhost', 5000)
+        bienvenida = @socket_cliente.recv(1279)
         puts bienvenida
         @socket_cliente.puts(user + "," + token)
         @conectado = true
@@ -23,9 +24,9 @@ class BomberBot
         while @conectado do
             puts "turno"
 
-            server_message = socket_cliente.read
+            server_message = @socket_cliente.recv(511)
             
-            message = serverMessage.split(";")
+            message = server_message.split(";")
 
             if message[0] == "EMPEZO"
                 bot = Bot.new(message[2][0])
@@ -34,7 +35,7 @@ class BomberBot
                 puts "turno: " + message[1]
                 bot.updateMap message[2]
                 msg = bot.move
-                socket_cliente.puts(msg)
+                @socket_cliente.puts(msg)
             elsif message[0] == "PERDIO"
                 puts "perdi :("
             end
