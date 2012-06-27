@@ -12,7 +12,7 @@ class BomberBot
     end
 
     def conectar user, token
-        @socket_cliente =TCPSocket::new('localhost', 5000)
+        @socket_cliente =TCPSocket::new('bomberbot.com', 5000)
         bienvenida = @socket_cliente.recv(1279)
         puts bienvenida
         @socket_cliente.puts(user + "," + token)
